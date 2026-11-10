@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLAR – nhận mã cấp quyền TikTok</title>
+<meta name="robots" content="noindex">
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; color: #1d2b36; background: #fff; }
+  code { display: block; word-break: break-all; background: #f2f5f7; padding: 12px; border-radius: 6px; }
+  button { margin-top: 12px; padding: 10px 16px; font-size: 16px; border: 0; border-radius: 6px; background: #0a7c6b; color: #fff; }
+</style>
+</head>
+<body>
+<h1>Đã nhận mã cấp quyền</h1>
+<p id="kenh"></p>
+<p>Chép toàn bộ địa chỉ trên thanh địa chỉ (hoặc mã dưới đây) và chạy lệnh <b>doi-token</b> trong vòng 10 phút. Mã chỉ dùng được một lần.</p>
+<code id="ma">(không thấy mã trong địa chỉ)</code>
+<button onclick="navigator.clipboard.writeText(location.href)">Chép cả địa chỉ</button>
+<script>
+  const q = new URLSearchParams(location.search);
+  const ma = q.get("auth_code") || q.get("code");
+  if (ma) document.getElementById("ma").textContent = ma;
+  if (q.get("state")) document.getElementById("kenh").textContent = "Kênh: @" + q.get("state");
+  if (q.get("error")) document.getElementById("ma").textContent = "Lỗi: " + q.get("error") + " " + (q.get("error_description") || "");
+</script>
+</body>
+</html>
